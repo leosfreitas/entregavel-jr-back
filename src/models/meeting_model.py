@@ -23,10 +23,6 @@ class MeetingModel(Document):
     inicial_time = StringField(required=True)
     final_time = StringField()
 
-    
-
-
-
     def get_normal_fields():
         return [i for i in MeetingModel.__dict__.keys() if i[:1] != '_' and i != "sensivity_fields" and i not in MeetingModel.sensivity_fields]
     

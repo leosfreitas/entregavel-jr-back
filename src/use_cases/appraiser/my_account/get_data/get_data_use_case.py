@@ -10,4 +10,4 @@ class getAppraiserData:
         appraiser_name = self.appraiser_repository.get_name(appraiser_id)
         appraiser_email = self.appraiser_repository.get_email(appraiser_id)
 
-        return {"status":"success", "data": {"name": appraiser_name, "email": appraiser_email}}
+        return {"status":"success", "data": {"name": appraiser_name, "email": appraiser_email, "id": appraiser_id}}
