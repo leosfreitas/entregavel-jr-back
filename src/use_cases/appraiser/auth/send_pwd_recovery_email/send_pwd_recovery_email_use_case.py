@@ -32,9 +32,8 @@ class SendPwdRecoveryEmailUseCase:
         send_email(
             email=appraiser.email, 
             content=f"""
-                <a href="{config["client_url"] + "/appraiser/password-recovery/" + token}">Redefina sua senha da conta clicando aqui:</a>
+                <a href="{config["client_url"] + "/user/auth/reset/pwd/" + token}">Redefina sua senha da conta clicando aqui:</a>
             """,
-            subject="Link de redefinição de senha"
         )
 
         response.status_code = 200

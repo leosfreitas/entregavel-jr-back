@@ -8,5 +8,5 @@ class RegisterDTO(BaseModel):
     name: str
     email: str
     password: str
-    front: Literal["Business", "Engenharia", "Direito"]
-    position: Literal["Consultor", "Liderança"]
+    cpf: str
+    phone: str

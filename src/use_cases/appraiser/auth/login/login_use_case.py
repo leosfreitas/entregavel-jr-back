@@ -2,6 +2,7 @@ from repositories.appraiser_repository import AppraisersRepository
 from fastapi import FastAPI, Request, Response
 from use_cases.appraiser.auth.login.login_dto import LoginDTO
 from entities.appraiser import Appraiser
+import datetime
 import jwt
 import os
 
@@ -23,10 +24,20 @@ class LoginUseCase:
         if (not appraiser.check_password_matches(login_dto.password)):
             response.status_code = 400
             return {"status": "error", "message": "Senha incorreta, tente novamente mais tarde."}
+        
+        expiration = datetime.datetime.now(datetime.UTC) + datetime.timedelta(days=90)
 
         token = jwt.encode({"email": appraiser.email, "id": str(appraiser.id)}, os.getenv("APPRAISER_JWT_SECRET"))
-
-        response.set_cookie(key="appraiser_auth_token", value=f"Bearer {token}", httponly=True)
         
+        response.set_cookie(
+            key="appraiser_auth_token",
+            value=f"Bearer {token}",
+            httponly=True,
+            expires=expiration,
+            secure=False,
+            domain="localhost",  
+        )
+
+
         response.status_code = 202
         return {"status": "success", "message": "Acesso permitido"}

@@ -17,8 +17,8 @@ class AppraisersModel(Document):
     name = StringField(required=True)
     email = StringField(required=True, unique=True)
     password = StringField(required=True, unique=True)
-    front = StringField(required=True)
-    position = StringField(required=True)
+    cpf = StringField(required=True)
+    phone = StringField(required=True)
 
     reset_pwd_token = StringField(default="")
     reset_pwd_token_sent_at = IntField(default=0)
