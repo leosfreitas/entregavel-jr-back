@@ -36,3 +36,16 @@ class DespesaRepository:
         despesa_dict = despesa.to_mongo().to_dict()
         despesa_dict['_id'] = str(despesa_dict['_id'])
         return despesa_dict
+    
+    def get_despesa_by_user_id(self, user: str) -> List[dict]:
+        despesas = DespesaModel.objects(user=user)
+        if not despesas:
+            return None
+
+        despesas_list = []
+        for despesa in despesas:
+            despesa_dict = despesa.to_mongo().to_dict()
+            despesa_dict['_id'] = str(despesa_dict['_id'])  
+            despesas_list.append(despesa_dict)
+        
+        return despesas_list
