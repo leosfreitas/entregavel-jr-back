@@ -8,6 +8,7 @@ from entities.despesa import Despesa
 from models.despesa_model import DespesaModel
 from models.fields.sensivity_field import SensivityField
 from utils.encode_hmac_hash import encode_hmac_hash
+from bson import ObjectId
 
 class DespesaRepository:
     fernet = Fernet(os.getenv("FERNET_SECRET_KEY"))
@@ -57,4 +58,24 @@ class DespesaRepository:
         if despesa.user != user:
             return False
         despesa.delete()
+        return True
+    
+    def update_despesa(self, despesa_id: str, tipo: str, valor: float, data: str, descricao: str) -> bool:
+        if not ObjectId.is_valid(despesa_id):
+            return False
+
+        despesa_model = DespesaModel.objects.with_id(ObjectId(despesa_id))
+        if not despesa_model:
+            return False
+
+        if tipo:
+            despesa_model.tipo = tipo
+        if valor:
+            despesa_model.valor = valor
+        if data:
+            despesa_model.data = data
+        if descricao:
+            despesa_model.descricao = descricao
+
+        despesa_model.save()
         return True
