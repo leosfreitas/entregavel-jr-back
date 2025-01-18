@@ -49,3 +49,12 @@ class DespesaRepository:
             despesas_list.append(despesa_dict)
         
         return despesas_list
+    
+    def delete_despesa_by_id(self, despesa_id: str, user: str) -> bool:
+        despesa = DespesaModel.objects.with_id(despesa_id)
+        if not despesa:
+            return False
+        if despesa.user != user:
+            return False
+        despesa.delete()
+        return True
