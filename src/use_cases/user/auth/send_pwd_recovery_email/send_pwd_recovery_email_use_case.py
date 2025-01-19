@@ -32,7 +32,7 @@ class SendPwdRecoveryEmailUseCase:
         send_email(
             email=user.email, 
             content=f"""
-                <a href="{config["client_url"] + "/user/auth/reset/pwd/" + token}">Redefina sua senha da conta clicando aqui:</a>
+                <a href="{"http://localhost:5173/user/auth/reset/pwd/" + token}">Redefina sua senha da conta clicando aqui:</a>
             """,
         )
 
