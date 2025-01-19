@@ -20,26 +20,7 @@ class FinanceModel(Document):
         ]
     )
     user = StringField(required=False)
-    tipo = StringField(
-        required=True,
-        choices=[
-            "Habitação",
-            "Transporte",
-            "Alimentação",
-            "Saúde",
-            "Educação",
-            "Lazer",
-            "Roupas",
-            "Tecnologia",
-            "Assinaturas e Serviços",
-            "Investimentos",
-            "Doações",
-            "Impostos",
-            "Dívidas",
-            "Outros"
-        ]
-    )
-
+    tipo = StringField(required=True)
     valor = StringField(required=True)
     data = StringField(required=True)
     descricao = StringField(required=False)

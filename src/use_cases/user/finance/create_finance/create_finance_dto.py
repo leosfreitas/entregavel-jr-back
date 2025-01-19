@@ -7,22 +7,7 @@ class CreateFinanceDTO(BaseModel):
         "Despesa"
     ]
     
-    tipo: Literal[
-    "Habitação",
-    "Transporte",
-    "Alimentação",
-    "Saúde",
-    "Educação",
-    "Lazer",
-    "Roupas",
-    "Tecnologia",
-    "Assinaturas e Serviços",
-    "Investimentos",
-    "Doações",
-    "Impostos",
-    "Dívidas",
-    "Outros"
-    ]
+    tipo: str
     valor: str
     data: str
     descricao: str
