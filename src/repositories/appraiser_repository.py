@@ -63,6 +63,22 @@ class AppraisersRepository:
         appraiser = AppraisersModel.objects(id=id).first()
         if appraiser:
             return appraiser.email
+        
+    def get_cpf(self, id: str) -> str:
+        appraiser = AppraisersModel.objects(id=id).first()
+        if appraiser:
+            return appraiser.cpf
+        
+    def get_phone(self, id: str) -> str:
+        appraiser = AppraisersModel.objects(id=id).first()
+        if appraiser:
+            return appraiser.phone
+        
+    def get_password(self, id: str) -> str:
+        appraiser = AppraisersModel.objects(id=id).first()
+        if appraiser:
+
+            return self.fernet.decrypt(appraiser.password).decode()
     
     def update_name(self, id: str, name: str) -> None:
         AppraisersModel.objects(id=id).update(set__name = name)
@@ -70,4 +86,12 @@ class AppraisersRepository:
 
     def update_email(self, id: str, email: str) -> None:
         AppraisersModel.objects(id=id).update(set__email = email)
+        return None
+    
+    def update_cpf(self, id: str, cpf: str) -> None:
+        AppraisersModel.objects(id=id).update(set__cpf = cpf)
+        return None
+    
+    def update_phone(self, id: str, phone: str) -> None:
+        AppraisersModel.objects(id=id).update(set__phone = phone)
         return None

@@ -5,4 +5,5 @@ class UpdateDataDTO(BaseModel):
 
     name: str
     email: str
-    password: str
+    cpf: str
+    phone: str
